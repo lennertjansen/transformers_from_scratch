@@ -79,4 +79,4 @@ class MultiHeadAttention(nn.Module):
         # Final linear layer
         output = self.linear_out(output)  # (batch_size, seq_len, d_model)
 
-        return output, attn
+        return output
