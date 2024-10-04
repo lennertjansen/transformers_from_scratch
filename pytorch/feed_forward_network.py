@@ -7,13 +7,13 @@ import torch.nn as nn
 class FeedForward(nn.Module):
     """Feed-forward network for the transformer model."""
 
-    def __init__(self, d_model, d_ff=2048, dropout=0.1) -> None:
+    def __init__(self, d_model: int, d_ff: int = 2048, dropout: float = 0.1) -> None:
         """Initialize feed-forward network.
 
         Args:
-            d_model: The dimension of the embeddings.
-            d_ff: The hidden layer size.
-            dropout: Dropout probability.
+            d_model (int): The dimension of the embeddings.
+            d_ff (int): The hidden layer size.
+            dropout (float): Dropout probability.
         """
         super().__init__()
 
@@ -21,7 +21,7 @@ class FeedForward(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.linear2 = nn.Linear(d_ff, d_model)
 
-    def forward(self, x) -> torch.Tensor:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass of the feed.
 
         Args:
