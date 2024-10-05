@@ -1,5 +1,6 @@
 """This module contains the multi-head attention module for the transformer model."""
 
+from typing import Optional
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -34,13 +35,19 @@ class MultiHeadAttention(nn.Module):
         self.dropout = nn.Dropout(p=dropout)
         self.softmax = nn.Softmax(dim=-1)
 
-    def forward(self, query, key, value, mask=None):
+    def forward(
+        self,
+        query: torch.Tensor,
+        key: torch.Tensor,
+        value: torch.Tensor,
+        mask: Optional[torch.Tensor] = None,
+    ):
         """
         Args:
             query: Tensor of shape (batch_size, seq_len, d_model)
             key: Tensor of shape (batch_size, seq_len, d_model)
             value: Tensor of shape (batch_size, seq_len, d_model)
-            mask: Tensor of shape (batch_size, 1, 1, seq_len) or similar
+            mask: Optional Tensor of shape (batch_size, 1, 1, seq_len) or similar
         Returns:
             Output tensor of shape (batch_size, seq_len, d_model)
             Attention weights of shape (batch_size, num_heads, seq_len, seq_len)
